@@ -40,6 +40,7 @@ public class EmployeeView extends VBox {
         });
 
         this.getChildren().addAll(titleLabel, usernameLabel, teamLabel, teamField, effortLabel, effortArea, submitButton, logoutButton);
+        timeout times = new timeout(primaryStage);
     }
 
     private void saveData(String team, String effort) {
