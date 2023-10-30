@@ -13,7 +13,8 @@ import javafx.event.*;
 public class timeout extends VBox {
 	private Timeline time;
 	public timeout(Stage primaryStage) {
-		time = new Timeline(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
+		//sets a timeout timer that will send the user to the login screen and notify them that they will need to login due to inactivity.
+		time = new Timeline(new KeyFrame(Duration.seconds(30), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
