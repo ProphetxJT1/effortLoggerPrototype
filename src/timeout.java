@@ -10,21 +10,24 @@ import javafx.event.*;
 
 
 
+
 public class timeout extends VBox {
 	private Timeline time;
 	public timeout(Stage primaryStage) {
-		//sets a timeout timer that will send the user to the login screen and notify them that they will need to login due to inactivity.
+		//creates timer instance of x amount of seconds for timeout
 		time = new Timeline(new KeyFrame(Duration.seconds(30), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 Alert exit = new Alert(Alert.AlertType.INFORMATION);
-                exit.setHeaderText("You were inactive for (10) seconds, returning to loginpage");
+                //alert user that their session is ending
+                exit.setHeaderText("You were inactive for (30) seconds, returning to loginpage");
                 exit.setTitle("Please relogin");
                 exit.show();
-
+                	//force close the session
                 	primaryStage.close();
-                    openLoginPage();
+                    // reopen login page to re login
+                	openLoginPage();
                     
                     
                     time.stop();
@@ -34,13 +37,14 @@ public class timeout extends VBox {
 		
 			time.setCycleCount(Timeline.INDEFINITE);
 	        time.play();
-	
+	        //key stroke resets timer
 	        primaryStage.addEventFilter(KeyEvent.ANY, new EventHandler<Event>() {
 	            @Override
 	            public void handle(Event event) {
 	                time.playFromStart();
 	            }
 	        });
+	        //mouse click or movement resets timer
 	        primaryStage.addEventFilter(MouseEvent.ANY, new EventHandler<Event>() {
 	            @Override
 	            public void handle(Event event) {
